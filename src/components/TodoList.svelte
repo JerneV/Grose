@@ -1,14 +1,19 @@
 <!-- Will contain a list of Todo items both check and unchecked -->
 <script lang="ts">
   export let allTodos: any[] = [];
-  $: totalTodos = allTodos.length;
-  $: completedTodos = allTodos.filter((todo) => todo.completed).length;
+  export let selected: any = "";
+
+  $: totalTodos = allTodos.filter(
+    (todo) => todo.selectedStore === selected
+  ).length;
+  $: completedTodos = allTodos.filter(
+    (todo) => todo.completed && todo.selectedStore === selected
+  ).length;
 
   function completeTodo(todo: any) {
     todo.completed = !todo.completed;
     // Update the todo list so lists get re-rendered
     allTodos = [...allTodos];
-    console.log(allTodos);
   }
 
   export function removeFromList(todo: any) {
@@ -16,9 +21,11 @@
   }
 </script>
 
-<h2>{completedTodos} out of {totalTodos} items completed</h2>
+<h2>
+  {completedTodos} out of {totalTodos} items completed for {selected}
+</h2>
 <ul>
-  {#each allTodos.filter((todo) => !todo.completed) as todo (todo.id)}
+  {#each allTodos.filter((todo) => !todo.completed && todo.selectedStore === selected) as todo (todo.id)}
     <li>
       <input
         type="checkbox"
@@ -35,7 +42,7 @@
 
 <h2>Completed items</h2>
 <ul>
-  {#each allTodos.filter((todo) => todo.completed) as todo (todo.id)}
+  {#each allTodos.filter((todo) => todo.completed && todo.selectedStore === selected) as todo (todo.id)}
     <li>
       <input
         type="checkbox"

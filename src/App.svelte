@@ -17,5 +17,5 @@
   <Background bind:allTodos />
   <StoreSelect bind:stores bind:selected />
   <Input bind:allTodos bind:selected />
-  <TodoList bind:allTodos />
+  <TodoList bind:allTodos bind:selected />
 </main>
