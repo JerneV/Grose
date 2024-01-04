@@ -30,7 +30,7 @@ jobs:
       - name: Build Project
         run: bun run build
       - name: Upload Artifacts
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./dist
         # Deploy to the github-pages environment
