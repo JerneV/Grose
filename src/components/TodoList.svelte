@@ -8,6 +8,7 @@
     todo.completed = !todo.completed;
     // Update the todo list so lists get re-rendered
     allTodos = [...allTodos];
+    console.log(allTodos);
   }
 
   export function removeFromList(todo: any) {

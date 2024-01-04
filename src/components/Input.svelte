@@ -1,5 +1,6 @@
 <script lang="ts">
   export let allTodos: any[] = [];
+  export let selected: any = "";
 
   let newTodoId = 0;
   let newTodoName = "";
@@ -15,7 +16,12 @@
     if (newTodoName === "") return;
     allTodos = [
       ...allTodos,
-      { id: newTodoId, name: newTodoName, completed: false },
+      {
+        id: newTodoId,
+        name: newTodoName,
+        completed: false,
+        selectedStore: selected,
+      },
     ];
     newTodoName = "";
   }
