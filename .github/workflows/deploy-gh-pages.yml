@@ -30,12 +30,10 @@ jobs:
       - name: Build Project
         run: bun run build
       - name: Upload Artifacts
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v2
         with:
-          path: ./dist
+          path: "./dist"
         # Deploy to the github-pages environment
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3
-        with:
-          artifact_name: github-pages.zip
+        uses: actions/deploy-pages@v2
