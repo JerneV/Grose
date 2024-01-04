@@ -1,0 +1,8 @@
+{
+    "name": "Grose - Shopping List App",
+    "short_name": "Grose Shopping",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ff3e00"
+  }
