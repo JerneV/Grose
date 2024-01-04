@@ -16,6 +16,9 @@ jobs:
       pages: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v3
       - name: Set Up Bun
@@ -30,6 +33,7 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           path: ./dist
+        # Deploy to the github-pages environment
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
