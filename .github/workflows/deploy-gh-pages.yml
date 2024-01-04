@@ -5,31 +5,27 @@ on:
   push:
     branches:
       - main
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-      - name: Checkout
       - uses: actions/checkout@v3
-
-      - name: Setup Node.js
-      - uses: oven-sh/setup-bun@v1
-        with: 
+      - name: Set Up Bun
+        uses: oven-sh/setup-bun@v1
+        with:
           bun-version: latest
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build Svelte + Vite
-        run: npm run build
+      - name: Build Project
+        run: bun run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
