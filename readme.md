@@ -7,11 +7,7 @@ I created it using Svelte and Vite.
 
 To run it locally I use:
 `bun run dev`
-And to update the Github pages I do:
 
-```shell
-bun run build
-bun run deploy
-```
+On commit the Github pages get updated if build is successful.
 
 That's about it.
